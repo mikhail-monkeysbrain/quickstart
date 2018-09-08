@@ -144,10 +144,12 @@ gulp.task('copy', function() {
 gulp.task('fonts', function() {
 	return gulp.src([
 		'src/fonts/**/*.ttf',
+		'src/fonts/**/*.otf',
+		'src/fonts/**/*.eot',
+		'src/fonts/**/*.svg',
 		'src/fonts/**/*.woff',
 		'src/fonts/**/*.woff2',
-		'src/fonts/**/*.otf',
-		'src/fonts/**/*.woff2'
+		'src/fonts/**/*.css'
 		])
 		.pipe(gulp.dest('dist/fonts/'))
 });
@@ -163,7 +165,7 @@ gulp.task('prod-box', ['html-build', 'copy', 'js-build', 'css-build', 'img-build
 
 // watch
 gulp.task('watch', () => {
-	gulp.watch([`${srcPath}/sass/**/*.sass`, `${srcPath}/markup/**/*.sass`], ['sass']);
+	gulp.watch([`${srcPath}/sass/**/*.sass`, `${srcPath}/sass/*.sass`], ['sass']);
 	gulp.watch(`${srcPath}/**/*.pug`, ['pug']);
 	gulp.watch(`${srcPath}/fonts/**/*`, ['fonts']);
 	gulp.watch(`${srcPath}/js/**/*.js`, ['js']);
@@ -186,5 +188,5 @@ gulp.task('build', () => {
 
 // dev
 gulp.task('default', () => {
-	runSequence('clean:dist', ['dev-box', 'watch'], 'server')
+	runSequence('clean:dist', 'dev-box', 'watch' , 'server')
 });
