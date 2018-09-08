@@ -33,7 +33,8 @@ let gulp    	= require('gulp'),
 let CSSmin 	    = require('gulp-clean-css'),
 	sass        = require('gulp-sass'),
  	uncss     	= require('gulp-uncss'),
- 	prefix   	= require('gulp-autoprefixer');
+	prefix   	= require('gulp-autoprefixer'),
+	sourcemaps 	= require('gulp-sourcemaps');
 
  // JS plugins //
 let JSmin       = require('gulp-jsmin'),
@@ -45,7 +46,7 @@ let pug           = require('gulp-pug'),
 	HTMLmin       = require('gulp-html-minifier');
 
 // IMG plugins
-let imageMin = require('gulp-imagemin');
+var imageMin = require('gulp-imagemin');
 
 
 
@@ -108,8 +109,10 @@ gulp.task('html-build', () => {
 // sass
 gulp.task('sass', () => {
 	return gulp.src(`${srcPath}/sass/main.sass`)
+		.pipe(sourcemaps.init())
 		.pipe(sass()).on('error', sass.logError)
-		.pipe(prefix('last 3 versions'))
+		.pipe(sourcemaps.write())
+		.pipe(prefix('last 2 versions'))
 		.pipe(gulp.dest(`${buildPath}/css`));
 });
 

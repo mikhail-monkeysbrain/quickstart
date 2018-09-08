@@ -1,0 +1,30 @@
+{
+  "name": "gulp_pug_sass_es6",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "repository": "git@github.com:mikhail-monkeysbrain/quickstart.git",
+  "author": "monkeysbrain <monkeysbrain@yandex.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.0.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-html-minifier": "^0.1.8",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-jshint": "^2.1.0",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-server-livereload": "^1.9.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uncss": "^1.0.6",
+    "gulp-watch": "^5.0.1",
+    "jshint": "^2.9.6",
+    "run-sequence": "^2.2.1"
+  }
+}
