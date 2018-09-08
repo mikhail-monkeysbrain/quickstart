@@ -77,20 +77,36 @@ gulp.task('fonts', () => {
 });
 
 // js
+
+// gulp.task('js', () => {
+// 	return gulp.src(`${srcPath}/js/*.js`)
+// 		.pipe(concat('bundle.js'))
+// 		.pipe(JShint({ esversion: 6 }))
+// 		.pipe(JShint.reporter()) // set up style errors type
+// 		.pipe(babel({
+// 			presets: ['es2015']
+// 		}))
+// 		.pipe(plumber())
+// 		.pipe(gulp.dest(`${buildPath}/js`));
+// });
+
 gulp.task('js', () => {
-	return gulp.src(`${srcPath}/js/**/*.js`)
+	return gulp.src('${srcPath}/js/*.js')
+		.pipe(concat('all.js'))
+		.pipe(plumber())
+		.pipe(gulp.dest('${buildPath}/js'));
+});
+
+
+gulp.task('js-build', () => {
+	return  gulp.src(`${srcPath}/js/**/*.js`)
 		.pipe(concat('bundle.js'))
 		.pipe(JShint({ esversion: 6 }))
 		.pipe(JShint.reporter()) // set up style errors type
 		.pipe(babel({
-			presets: ['es2015']
+			presets: ['@babel/env']
 		}))
 		.pipe(plumber())
-		.pipe(gulp.dest(`${buildPath}/js`));
-});
-
-gulp.task('js-build', () => {
-	return  gulp.src(`${buildPath}/js/*.js`)
 		.pipe(JSmin())
 		.pipe(gulp.dest(`${buildPath}/js`))
 });

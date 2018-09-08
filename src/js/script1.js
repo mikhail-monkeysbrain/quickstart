@@ -1,1 +1,3 @@
-console.log('Script one running!');
+const v = 2;
+
+console.log(v);
