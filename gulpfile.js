@@ -27,6 +27,7 @@ let gulp    	= require('gulp'),
 	rename   	= require('gulp-rename'),
 	server  	= require('gulp-server-livereload'),
 	del 		= require('del'),
+	plumber = require('gulp-plumber'),
 	runSequence = require('run-sequence');
 
  // CSS plugins //
@@ -59,17 +60,20 @@ let buildPath  = './dist';
 gulp.task('img', () => {
 	return gulp.src(`${srcPath}/img/*`)
 		.pipe(gulp.dest(`${buildPath}/img`))
+		.pipe(plumber())
 });
 gulp.task('img-build', () => {
 	return gulp.src(`${buildPath}/img/*`)
 		.pipe(imageMin())
 		.pipe(gulp.dest(`${buildPath}/img`))
+		.pipe(plumber())
 });
 
 // fonts
 gulp.task('fonts', () => {
 	return gulp.src(`${srcPath}/fonts/*`)
 		.pipe(gulp.dest(`${buildPath}/fonts`))
+		.pipe(plumber())
 });
 
 // js
@@ -81,6 +85,7 @@ gulp.task('js', () => {
 		.pipe(babel({
 			presets: ['es2015']
 		}))
+		.pipe(plumber())
 		.pipe(gulp.dest(`${buildPath}/js`));
 });
 
@@ -95,6 +100,7 @@ gulp.task('pug', () => {
 	return gulp.src(`${srcPath}/*.pug`)
 		.pipe(pug({ pretty: true }))
 		.pipe(gulp.dest(buildPath))
+		.pipe(plumber())
 });
 
 gulp.task('html-build', () => {
@@ -113,6 +119,7 @@ gulp.task('sass', () => {
 		.pipe(sass()).on('error', sass.logError)
 		.pipe(sourcemaps.write())
 		.pipe(prefix('last 2 versions'))
+		.pipe(plumber())
 		.pipe(gulp.dest(`${buildPath}/css`));
 });
 
@@ -138,6 +145,7 @@ gulp.task('copy', function() {
 
 		])
 		.pipe(gulp.dest('dist/'))
+		.pipe(plumber())
 });
 
 // copy fonts
@@ -152,6 +160,7 @@ gulp.task('fonts', function() {
 		'src/fonts/**/*.css'
 		])
 		.pipe(gulp.dest('dist/fonts/'))
+		.pipe(plumber())
 });
 
 // clean deploy path
